@@ -9,10 +9,27 @@ struct Vector{
 
 
 
+//                 RHS        SELF ( type that we want to implemnt this op for)
+
+impl std::ops::Mul<Vector> for f32 {
+    type Output = Vector;
+
+    fn mul(self,rhs:Vector) -> Vector{
+        Vector{
+        x: self * rhs.x,
+        y: self * rhs.y,
+        z: self * rhs.z,
+        }
+
+    }
+
+}
+
+
 impl std::ops::Mul<f32> for Vector{
 
     type Output =  Vector;
-    fn mul(self,rhs: f32 )->Vector{
+    fn mul(self,rhs: f32 ) -> Vector{
         Vector{
         x: self.x * rhs,
         y: self.y * rhs,
@@ -45,5 +62,8 @@ fn main() {
     println!("Vecotr: {:?} + Vector : {:?} = {:?}", vec1,vec2,(vec1+vec2));
 
     println!("Vecotr: {:?} * Float : {:?} = {:?}", vec1,float ,(vec1*float));
+
+    println!("Float: {:?} * Vector : {:?} = {:?}", float, vec1, (float * vec1));
+
 
 }
