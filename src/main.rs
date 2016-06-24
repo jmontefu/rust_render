@@ -1,4 +1,3 @@
-
 #[derive(Debug,Clone,Copy)]
 struct Vector{
     x: f32,
@@ -6,7 +5,8 @@ struct Vector{
     z: f32,
 
 }
-// ImPLIMENTATION OF FUNCTIONS
+
+// IMPLIMENTATION OF FUNCTIONS
 impl Vector {
 
     // new fn, takes arguments // constuctors of the struct you are 
@@ -19,19 +19,37 @@ impl Vector {
             y: y,
             z: z,
         }
-        
     }
-
+    
+    // Implimenting Dot Product For Vector
     fn dot(self,vec: Vector)-> f32{
-        
         (self.x * vec.x) +            
         (self.y * vec.y) +
         (self.z * vec.z)
-
-
+    }
+    
+    // Implimenting Cross Product For Vector
+    fn cross(self,vec: Vector) -> Vector{
+        Vector{
+            x:((self.y * vec.z) - (self.z * vec.y)),
+            y:-((self.x * vec.z) - (self.z * vec.x)),
+            z:((self.x * vec.y) -  (self.y * vec.x)),
+        }
     }
 
-    
+    // Implimenting Unit Vector for Vector
+    fn unit(self,vec: Vector) -> Vector{
+        let cross = self.cross(vec);
+        let sqrt = (cross.x.powf(2.0) + 
+                    cross.y.powf(2.0) +
+                    cross.z.powf(2.0)).abs().sqrt();
+        Vector{
+             x: (cross.x / sqrt),
+             y: (cross.y / sqrt),
+             z: (cross.z / sqrt),
+        }
+    }
+
 
 }
 
@@ -45,11 +63,10 @@ impl std::ops::Mul<Vector> for f32 {
 
     fn mul(self,rhs:Vector) -> Vector{
         Vector{
-        x: self * rhs.x,
-        y: self * rhs.y,
-        z: self * rhs.z,
+            x: self * rhs.x,
+            y: self * rhs.y,
+            z: self * rhs.z,
         }
-
     }
 
 }
@@ -60,9 +77,22 @@ impl std::ops::Mul<f32> for Vector{
     type Output =  Vector;
     fn mul(self,rhs: f32 ) -> Vector{
         Vector{
-        x: self.x * rhs,
-        y: self.y * rhs,
-        z: self.z * rhs,
+            x: self.x * rhs,
+            y: self.y * rhs,
+            z: self.z * rhs,
+        }
+    }
+}
+
+
+impl std::ops::Div<f32> for Vector{
+    
+    type Output = Vector;
+    fn div(self,rhs: f32) -> Vector{
+        Vector{
+            x: self.x * rhs,
+            y: self.y * rhs,
+            z: self.z * rhs,
         }
     }
 }
@@ -95,10 +125,6 @@ impl std::ops::Sub for Vector{
 
 
 
-
-
-
-
 fn main() {
     let vec1 = Vector{x: 1.2,y: 15.2,z: 225.3};
     let vec2 = Vector::new(3.5,235.3,352.0);
@@ -119,4 +145,11 @@ fn main() {
     println!(",");
     println!(" {:?} o {:?} = {:?}", vec1, vec2, vec1.dot(vec2));
     // println!(" {:?} o {:?} = {:?}", vec1, vec2, Vector::dot(vec1, vec2));
+
+    println!(",");
+    println!(" {:?} x {:?} = {:?}", vec1, vec2, vec1.cross(vec2));
+
+    println!(",");
+    println!("Unit Vec of {:?} and {:?} = {:?}", vec1, vec2, vec1.unit(vec2));
+
 }
