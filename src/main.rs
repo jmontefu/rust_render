@@ -1,34 +1,40 @@
+// HOME WORK
+
+//Create Ray Struct
+// Ray has starting point, direction, and
+// a function called intersect.
+// intersect function takes ray and sphere
+// tels you if ray hit sphere and where
+
+
 //extern crate rust_training;
 //use rust_training::vectors::maths;
 
-mod vectors;
-use vectors::maths::Vector;
+
+// mod : imports module vectors
+// use : use "Vector" instead of typing "vectors::maths::Vector"
+// inside of scripts: same as " import xx as xx" in python
+
+
+mod math;
+mod geometry;
+use math::vectors::Vector;
+use std::ops::Sub;
+use geometry::sphere::Sphere;
+use geometry::sphere::Ray;
 
 fn main() {
-    let vec1 = Vector::new(1.2,15.2,225.3);
-    let vec2 = Vector::new(3.5,235.3,352.0);
-    let float = 2.24;
+    let sphere_center = Vector::new(4.0,1.0,31.0);
+    let ray_orig = Vector::new(2.2,1.0,30.0);
+    let direction = Vector::new(1.0,0.0,0.0);
 
-// print statements
-    println!("Vecotr: {:?} + Vector : {:?} = {:?}", vec1,vec2,(vec1+vec2));
-    
-    println!("");
-    println!("Vecotr: {:?} - Vector : {:?} = {:?}", vec1,vec2,(vec1-vec2));
+    let sphere = Sphere{radius: 1.2, 
+                        center: sphere_center};
 
-    println!("");
-    println!("Vecotr: {:?} * Float : {:?} = {:?}", vec1,float ,(vec1*float));
+    let ray = Ray{origin: ray_orig,
+                  direction: direction};
 
-    println!("");
-    println!("Float: {:?} * Vector : {:?} = {:?}", float, vec1, (float * vec1));
-    
-    println!(",");
-    println!(" {:?} o {:?} = {:?}", vec1, vec2, vec1.dot(vec2));
-    // println!(" {:?} o {:?} = {:?}", vec1, vec2, Vector::dot(vec1, vec2));
+    let intersect = Sphere::intersection(sphere,ray);
 
-    println!(",");
-    println!(" {:?} x {:?} = {:?}", vec1, vec2, vec1.cross(vec2));
-
-    println!(",");
-    println!("Unit Vec of {:?} and {:?} = {:?}", vec1, vec2, vec1.unit(vec2));
-
+    println!("test: {:?}",intersect);
 }
