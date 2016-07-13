@@ -1,0 +1,18 @@
+
+HOMEWORK 
+==================================================================================
+==================================================================================
+
+
+// add image to dependenfies .. cargo.io
+// cargo update = update tmol
+// add ray module
+// look up option and some for returning multple types ( none and somthing else)
+
+// create image using image crate
+// look at homepage for example
+// for images iff you do x * 255 / max width 
+// ( 255 being highest value in u8
+// for images 
+// Make a normals pass for sphere
+// figure out how to loop through rays from camera ( based on pixel)

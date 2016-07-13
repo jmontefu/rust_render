@@ -5,9 +5,9 @@
 use std;
 #[derive(Debug,Clone,Copy)]
 pub struct Vector{
-    x: f32,
-    y: f32,
-    z: f32,
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
 }
 // IMPLIMENTATION OF FUNCTIONS
 impl Vector {
@@ -54,6 +54,18 @@ impl Vector {
              y: (cross.y / sqrt),
              z: (cross.z / sqrt),
         }
+    }
+
+    pub fn normalize(self) -> Vector{
+        let mag = (self.x.powf(2.0) + 
+                   self.y.powf(2.0) +
+                   self.z.powf(2.0)).sqrt();
+        Vector{
+            x: ( self.x / mag),
+            y: ( self.y / mag),
+            z: ( self.z / mag),
+        }
+
     }
 }
 
