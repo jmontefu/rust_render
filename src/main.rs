@@ -8,12 +8,17 @@ use primitives::sphere::Sphere;
 use primitives::triangle::Triangle;
 use primitives::ray::Intersection;
 use primitives::ray::Ray;
-
-use std::fs::File;
-use std::path::Path;
+use primitives::mesh::Mesh;
 
 
 fn main() {
+
+    let path = "/home/jmontefu/training/rust_training/triangle_test.txt";
+    let new_mesh = Mesh::new().read(path);
+    println!{"{:?}",new_mesh};
+    
+/*
+
     let sphere_center = Vector::new(0.0,0.0,0.0);
     let sphere = Sphere{radius: 0.5,
                         center: sphere_center};
@@ -38,7 +43,7 @@ fn main() {
         let ray = Ray{origin: Vector::new(spx,spy,-10.0),
                       direction: Vector::new(0.0,0.0,-1.0)};
         //let intersect = Sphere::intersection(sphere,ray);
-        let intersect = Triangle::geo_intersection(triangle,ray);
+        let intersect = Triangle::intersection(triangle,ray);
 
         match intersect {
             Some(int) => {
@@ -61,4 +66,7 @@ fn main() {
 
     let ref mut fout = File::create(&Path::new("test.png")).unwrap();
     let _ = image::ImageRgba8(imgbuf).save(fout, image::PNG); 
+
+
+*/
 }

@@ -15,6 +15,16 @@ pub struct Triangle{
 
 impl Triangle{
 
+
+    pub fn new(v0: Vector,v1: Vector,v2: Vector) -> Triangle{
+        Triangle{
+            v0: v0,
+            v1: v0,
+            v2: v1,
+        }
+
+
+    }
     pub fn normal(self)-> Vector{
         let v0v1 = self.v1 - self.v0;
         let v0v2 = self.v2 - self.v0;
@@ -26,7 +36,7 @@ impl Triangle{
     // Phit = O + tR 
     // O = ray origin, R = ray Direction , t = distance
 
-    pub fn geo_intersection(self,ray: Ray) -> Option<Intersection>{
+    pub fn intersection(self,ray: Ray) -> Option<Intersection>{
          
         let n = self.normal();
         // finds distance from origin to v0

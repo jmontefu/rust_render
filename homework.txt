@@ -3,6 +3,30 @@ HOMEWORK
 ==================================================================================
 ==================================================================================
 
+
+Look at backface culling for triangle intersection
+Usb teathering for phone wifi.
+
+Create mesh type
+write a method ( one that takes self) on mesh that takes a file name and loads in
+    triangles ( one perline) from that file
+
+    ex ( file = 
+                    0 0 0 0 0 0 0 0 1
+                    1 1 1 2 2 0 0 1 2
+                    0 2 1 1 2 4 5 6 7.0
+
+                    )
+
+
+              
+                    
+Describe all triangles on said mesh
+Write exporter in python to creat a rust file that is that mesh
+
+==================================================================================
+
+
 rust-gdb is rusts debuggin tool
 to connect to vim  = vim --servername DBG
 
@@ -20,3 +44,7 @@ quit = quit
 // look up option and some for returning multple types ( none and somthing else)
 
 // figure out how to loop through rays from camera ( based on pixel)
+
+
+
+
